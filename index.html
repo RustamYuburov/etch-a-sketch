@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-Sketch</title>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Etch-a-Sketch</h1>
+    </header>
+
+    <main class="main">
+
+        <aside class="aside">
+            <div class="size">
+                <p>Choose the size of greed</p>
+                <button data-size="12" class="buttons">12x12</button>
+                <button data-size="24" class="buttons">24x24</button>
+                <button data-size="36" class="buttons">36x36</button>
+            </div>
+            <div class="color">
+                <p>Choose the color</p>
+                <button data-color="black" class="buttons">Black</button>
+                <button data-color="increment" class="buttons">Increment dark</button>
+                <button data-color="random" class="buttons">Random</button>
+            </div>
+            <div class="clear">
+                <button id="btn-clear" class="buttons">Clear</button>
+            </div>
+        </aside>
+
+        <div id="container" class="container"></div>
+
+    </main>
+</body>
+</html>
