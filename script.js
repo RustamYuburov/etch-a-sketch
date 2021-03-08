@@ -5,18 +5,18 @@ const clear = document.querySelector('#btn-clear');
 const sizeButtons = document.querySelectorAll('.size-btn');
 const colorButtons = document.querySelectorAll('.color-btn');
 
-// Clear container function
+// AddEventListener to buttons
 clear.addEventListener('click', clearGrid);
+sizeButtons.forEach((button) => {button.addEventListener('click', createGrid);});
+colorButtons.forEach((button) => {button.addEventListener('click', chooseColor);});
+
+// Clear container function
 function clearGrid() {
     let cells = container.querySelectorAll('.cell');
     cells.forEach(cell => {cell.style.backgroundColor = 'white'});
 };
 
 // Create div-cells function
-sizeButtons.forEach((button) => {
-    button.addEventListener('click', createGrid);
-});
-
 function createGrid() {
     container.className = '';
     container.innerHTML = '';
@@ -30,10 +30,6 @@ function createGrid() {
 }
 
 // Create color chosing function
-colorButtons.forEach((button) => {
-    button.addEventListener('click', chooseColor);
-});
-
 function chooseColor() {
     let color = this.dataset.color;
     let cells = container.querySelectorAll('.cell');
@@ -41,17 +37,43 @@ function chooseColor() {
         colorBlack(cells);
     } else if (color == 'random') {
         colorRandom(cells);
-    } else {
-        incrementDark(cells);
+    } else if (color == 'white') {
+        colorWhite(cells);
     }
-    // if (color == 'black') {
-    //     let cells = container.querySelectorAll('.cell');
-    //     cells.forEach(cell => {
-    //         cell.addEventListener('mouseenter', () => {
-    //             cell.style.backgroundColor = 'black';
-    //         });
-    //     })
-    // }
 };
 
-// Create colors functions
+// Create coloring functions
+function colorBlack(divs) {
+    divs.forEach(div => {
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = 'black';
+        });
+    });
+};
+
+function colorWhite(divs) {
+    divs.forEach(div => {
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = 'white';
+        });
+    });
+};
+
+function colorRandom(divs) {
+    divs.forEach(div => {
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = getRandomColor();
+        });
+    });
+};
+
+
+// Helper function
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+};
