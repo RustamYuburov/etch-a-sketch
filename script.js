@@ -2,26 +2,56 @@
 // Get all necessary DOM nodes
 const container = document.querySelector('#container');
 const clear = document.querySelector('#btn-clear');
-const sizeButtons = Array.from(document.querySelectorAll('.size-btn'));
-const colorButtons= Array.from(document.querySelectorAll('.color-btn'));
+const sizeButtons = document.querySelectorAll('.size-btn');
+const colorButtons = document.querySelectorAll('.color-btn');
 
-let cells = [];
+// Clear container function
+clear.addEventListener('click', clearGrid);
+function clearGrid() {
+    let cells = container.querySelectorAll('.cell');
+    cells.forEach(cell => {cell.style.backgroundColor = 'white'});
+};
 
 // Create div-cells function
+sizeButtons.forEach((button) => {
+    button.addEventListener('click', createGrid);
+});
 
-function createDiv(size) {
-    for (let i = 0; i < size; i++) {
+function createGrid() {
+    container.className = '';
+    container.innerHTML = '';
+    let size = this.dataset.size;
+    container.classList.add(`cell-${size}`);
+    for (let i = 1; i <= size * size; i++) {
         let cell = document.createElement('div');
-        cell.style.border = 'solid #000'
+        cell.classList.add('cell');
         container.appendChild(cell);
     }
 }
 
-// Clear container function
-clear.addEventListener('click', clearGrid);
+// Create color chosing function
+colorButtons.forEach((button) => {
+    button.addEventListener('click', chooseColor);
+});
 
-function clearGrid(cellArray) {
-    cellArray.forEach(cell => {
-        cell.classList.remove('cell');
-    });
-}
+function chooseColor() {
+    let color = this.dataset.color;
+    let cells = container.querySelectorAll('.cell');
+    if (color == 'black') {
+        colorBlack(cells);
+    } else if (color == 'random') {
+        colorRandom(cells);
+    } else {
+        incrementDark(cells);
+    }
+    // if (color == 'black') {
+    //     let cells = container.querySelectorAll('.cell');
+    //     cells.forEach(cell => {
+    //         cell.addEventListener('mouseenter', () => {
+    //             cell.style.backgroundColor = 'black';
+    //         });
+    //     })
+    // }
+};
+
+// Create colors functions
