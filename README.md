@@ -8,5 +8,4 @@ What i learned while I was making this project:
 
 ## Live demo available down here:
 
-[Etch-a-Sketch] (https://rustamyuburov.github.io/etch-a-sketch/)
-
+[Etch-a-Sketch](https://rustamyuburov.github.io/etch-a-sketch/)
